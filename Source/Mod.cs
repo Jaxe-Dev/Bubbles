@@ -7,8 +7,8 @@ namespace Bubbles
     internal static class Mod
     {
         public const string Id = "Bubbles";
-        public const string Name = "Interaction Bubbles";
-        public const string Version = "1.0.0";
+        public const string Name = "Bubbles";
+        public const string Version = "1.3";
 
         static Mod()
         {

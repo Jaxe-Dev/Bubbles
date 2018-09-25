@@ -7,98 +7,80 @@ namespace Bubbles.Interface
 {
     internal class Bubble
     {
-        private const int TextPadding = 2;
-
-        public Pawn Pawn { get; }
-
         private readonly string _text;
-        public int Height { get; }
-        private int _index;
 
-        private readonly int _rectHeight;
+        public int Width { get; private set; }
+        public int Height { get; private set; }
+
         private readonly DateTime _timeStart;
-        private readonly int _tickStart;
-        private int _offset;
+        private int _tickStart;
 
-        private Color BackColor { get; } = Color.white;
-        private Color ForeColor { get; } = Color.black;
-
-        public Bubble(Pawn pawn, string text, int index, int offset)
+        public Bubble(string text)
         {
-            Pawn = pawn;
-
             _text = text;
-            _rectHeight = Mathf.CeilToInt(Text.CalcHeight(_text, Bubbler.BubbleWidth + (Text.CurFontStyle.padding.horizontal * 2)) + (Text.CurFontStyle.padding.vertical * 2));
-            Height = _rectHeight + Bubbler.BubblePadding + (TextPadding * 2);
-            _index = index;
-            _offset = offset;
 
             _timeStart = DateTime.Now;
-            _tickStart = Find.TickManager.TicksAbs;
+            _tickStart = -1;
         }
 
-        public void Pop(Bubble bubble)
+        private float GetFade()
         {
-            if (bubble._index >= _index) { return; }
+            if (_tickStart == -1)
+            {
+                if ((DateTime.Now - _timeStart).TotalMilliseconds > Theme.MinTime) { _tickStart = Find.TickManager.TicksAbs; }
+                return Theme.StartOpacity.ToPercentageFloat();
+            }
 
-            _index -= 1;
-            _offset -= bubble.Height;
+            var elasped = Find.TickManager.TicksAbs - _tickStart - Theme.FadeStart;
+
+            if (elasped <= 0f) { return Theme.StartOpacity.ToPercentageFloat(); }
+            if (elasped > Theme.FadeLength) { return 0f; }
+
+            var fade = Theme.StartOpacity.ToPercentageFloat() * (1f - (elasped / (float) Theme.FadeLength));
+            return elasped < 0 ? 1f : fade;
         }
 
-        private float GetFade(Rect rect)
+        public bool Draw(Vector2 pos, bool isSelected, float scale)
         {
-            int time;
-            if (Bubbler.FadeMode == FadeBy.Time) { time = (int) (DateTime.Now - _timeStart).TotalMilliseconds; }
-            else if (Bubbler.FadeMode == FadeBy.Tick) { time = Find.TickManager.TicksAbs - _tickStart; }
-            else { throw new Mod.Exception($"Invalid value of {nameof(Bubbler.FadeMode)}"); }
+            var direction = Theme.GetOffsetDirection();
 
-            time -= Bubbler.FadeStart;
+            var font = Theme.GetFont(scale);
 
-            if (time > Bubbler.FadeTime) { return 0f; }
-            var fade = Mathf.Abs(1f - (time / (float) Bubbler.FadeTime));
-            if (Mouse.IsOver(rect)) { return Mathf.Min(fade, 0.2f); }
-            return time < 0 ? 1f : fade;
-        }
+            var paddingX = Theme.PaddingX * scale;
+            var paddingY = Theme.PaddingY * scale;
+            var maxWidth = Theme.MaxWidth * scale;
+            var content = new GUIContent(_text);
 
-        public bool Draw()
-        {
-            var pos = GenMapUI.LabelDrawPosFor(Pawn, -0.6f);
+            Width = Mathf.CeilToInt(Mathf.Min(font.CalcSize(content).x + (paddingX * 2), maxWidth));
+            Height = Mathf.CeilToInt(font.CalcHeight(content, Width - (paddingX * 2)) + (paddingY * 2));
 
-            var halfWidth = Bubbler.BubbleWidth / 2;
-            var rect = new Rect(pos.x - halfWidth, pos.y + Text.fontStyles[(int) GameFont.Tiny].lineHeight + Bubbler.BubblePadding + _offset, Bubbler.BubbleWidth, _rectHeight);
-            var textRect = rect.ContractedBy(2f);
+            var posX = pos.x;
+            var posY = pos.y;
 
-            var fade = GetFade(rect);
+            if (direction.IsHorizontal) { posY -= Height / 2f; }
+            else { posX -= Width / 2f; }
+
+            var outer = new Rect(posX, posY, Width, Height);
+            var inner = outer.ContractedBy(paddingX, paddingY);
+
+            var fade = Mathf.Min(GetFade(), Mouse.IsOver(outer) ? Theme.MouseOverOpacity.ToPercentageFloat() : 1f);
             if (fade <= 0f) { return false; }
 
-            var backColor = BackColor.WithAlpha(fade);
-            var foreColor = ForeColor.WithAlpha(fade);
+            var backColor = (isSelected ? Theme.SelectedBackColor : Theme.BackColor).WithAlpha(fade);
+            var foreColor = (isSelected ? Theme.SelectedForeColor : Theme.ForeColor).WithAlpha(fade);
 
             var prevColor = GUI.color;
-            var prevAnchor = Text.Anchor;
-            var prevFont = Text.Font;
-
-            Text.Anchor = TextAnchor.MiddleCenter;
-            Text.Font = GameFont.Tiny;
 
             GUI.color = backColor;
-            Widgets.DrawAtlas(rect, Textures.Inner);
+            Widgets.DrawAtlas(outer, Textures.Inner);
 
             GUI.color = foreColor;
-            Widgets.DrawAtlas(rect, Textures.Outer);
-            Widgets.Label(textRect, _text);
+            Widgets.DrawAtlas(outer, Textures.Outer);
+            GUI.Label(inner, content, font);
 
-            Text.Anchor = prevAnchor;
             GUI.color = prevColor;
-            Text.Font = prevFont;
 
             return true;
-        }
-
-        internal enum FadeBy
-        {
-            Time,
-            Tick
         }
     }
 }
