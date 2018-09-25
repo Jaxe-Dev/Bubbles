@@ -13,9 +13,9 @@ namespace Bubbles.Patch
         {
             if (worldView || (row == null)) { return; }
 
-            var activated = Bubbler.Activated;
+            var activated = Bubbler.Visibility;
             row.ToggleableIcon(ref activated, Textures.Icon, Lang.Get("Toggle"), SoundDefOf.Mouseover_ButtonToggle);
-            Bubbler.Activated = activated;
+            Bubbler.Visibility = activated;
         }
     }
 }

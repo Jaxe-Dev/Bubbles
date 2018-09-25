@@ -7,16 +7,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bubbles", "Bubbles.csproj",
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D3159CFD-253F-4FA0-8846-1B44B1C6949B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D3159CFD-253F-4FA0-8846-1B44B1C6949B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3159CFD-253F-4FA0-8846-1B44B1C6949B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3159CFD-253F-4FA0-8846-1B44B1C6949B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {75120DAC-15B3-4E5F-9DC1-DFD8D875EF0E}
 	EndGlobalSection
 EndGlobal
