@@ -46,9 +46,9 @@ namespace Bubbles.Interface
 
             var font = Theme.GetFont(scale);
 
-            var paddingX = Theme.PaddingX * scale;
-            var paddingY = Theme.PaddingY * scale;
-            var maxWidth = Theme.MaxWidth * scale;
+            var paddingX = Mathf.CeilToInt(Theme.PaddingX * scale);
+            var paddingY = Mathf.CeilToInt(Theme.PaddingY * scale);
+            var maxWidth = Mathf.CeilToInt(Theme.MaxWidth * scale);
             var content = new GUIContent(_text);
 
             Width = Mathf.CeilToInt(Mathf.Min(font.CalcSize(content).x + (paddingX * 2), maxWidth));
@@ -60,7 +60,7 @@ namespace Bubbles.Interface
             if (direction.IsHorizontal) { posY -= Height / 2f; }
             else { posX -= Width / 2f; }
 
-            var outer = new Rect(posX, posY, Width, Height);
+            var outer = new Rect(Mathf.CeilToInt(posX), Mathf.CeilToInt(posY), Width, Height);
             var inner = outer.ContractedBy(paddingX, paddingY);
 
             var fade = Mathf.Min(GetFade(), Mouse.IsOver(outer) ? Theme.MouseOverOpacity.ToPercentageFloat() : 1f);
