@@ -57,11 +57,11 @@ namespace Bubbles.Interface
         {
             if (!IsVisible || WorldRendererUtility.WorldRenderedNow) { return; }
 
-            var correction = (UI.screenHeight / OptimalHeight);
+            var correction = UI.screenHeight / OptimalHeight;
             var optimal = (CameraPlusLoaded ? CameraPlusOptimalZoom : OptimalZoom) * correction;
             var minZoom = OptimalMinZoom * correction;
-            var range = optimal - minZoom;
-            var scale = (Find.CameraDriver.CellSizePixels - minZoom) / range;
+            var range = Mathf.Max((optimal - minZoom) * Theme.ScaleStart.ToPercentageFloat(), 1f);
+            var scale = Mathf.Min((Find.CameraDriver.CellSizePixels - minZoom) / range, 1f);
 
             if (scale <= Theme.MinScale.ToPercentageFloat()) { return; }
 
@@ -78,7 +78,7 @@ namespace Bubbles.Interface
 
             var pos = GenMapUI.LabelDrawPosFor(pawn, -0.6f);
 
-            var offset = Theme.StartOffset;
+            var offset = Mathf.CeilToInt(Theme.StartOffset * scale);
             var count = 0;
 
             foreach (var bubble in Bubbles[pawn].ToArray())

@@ -14,6 +14,7 @@ namespace Bubbles.Interface
         public static bool DoSound { get; set; } = false;
 
         public static int MaxZoom { get => MinScale; set => MinScale = value; } // Backcompat
+        public static int ScaleStart { get; set; } = 100;
         public static int MinScale { get; set; } = 35;
         public static int MaxWidth { get; set; } = 250;
         public static int Spacing { get; set; } = 2;

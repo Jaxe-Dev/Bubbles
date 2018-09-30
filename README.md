@@ -1,7 +1,13 @@
 # Interaction Bubbles
-![](https://img.shields.io/badge/Mod_Version-1.3-blue.svg)
-![](https://img.shields.io/badge/Built_for_RimWorld-B19-blue.svg)
-![](https://img.shields.io/badge/Powered_by_Harmony-1.2.0.1-blue.svg)
+![Mod Version](https://img.shields.io/badge/Mod_Version-1.4-blue.svg)
+![RimWorld Version](https://img.shields.io/badge/Built_for_RimWorld-B19-blue.svg)
+![Harmony Version](https://img.shields.io/badge/Powered_by_Harmony-1.2.0.1-blue.svg)\
+![Steam Subscribers](https://img.shields.io/badge/dynamic/xml.svg?label=Steam+Subscribers&query=//table/tr[2]/td[1]&colorB=blue&url=https://steamcommunity.com/sharedfiles/filedetails/%3Fid=1516158345&suffix=+total)
+![GitHub Downloads](https://img.shields.io/github/downloads/Jaxe-Dev/Bubbles/total.svg?colorB=blue&label=GitHub+Downloads)
+
+[Link to Steam Workshop page](https://steamcommunity.com/sharedfiles/filedetails/?id=1516158345)\
+[Link to Ludeon Forum thread](https://ludeon.com/forums/index.php?topic=45958.0)
+
 
 ---
 
@@ -11,7 +17,10 @@ Bubbles will fade away after a short time but they are linked to the game time s
 
 ---
 
-##### INSTALLATION
+##### STEAM INSTALLATION
+- **[Go to the Steam Workshop page](https://steamcommunity.com/sharedfiles/filedetails/?id=1516158345]) and subscribe to the mod.**
+
+##### NON-STEAM INSTALLATION
 - **[Download the latest release](https://github.com/Jaxe-Dev/Bubbles/releases/latest) and unzip it into your *RimWorld/Mods* folder.**
 
 ---

@@ -8,7 +8,7 @@ namespace Bubbles
     {
         public const string Id = "Bubbles";
         public const string Name = "Bubbles";
-        public const string Version = "1.3";
+        public const string Version = "1.4";
 
         static Mod()
         {
