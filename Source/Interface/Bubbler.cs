@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Bubbles.Compatibility;
 using Bubbles.Patch;
 using Harmony;
 using RimWorld.Planet;
@@ -10,33 +11,22 @@ namespace Bubbles.Interface
 {
     internal static class Bubbler
     {
-        private const float OptimalHeight = 1050f;
-        private const float OptimalZoom = 45f;
+        public const float OptimalZoom = 45f;
         private const float OptimalMinZoom = 8f;
-        private const float CameraPlusOptimalZoom = OptimalZoom / 2f;
+        private const float OptimalHeight = 1050f;
 
         public static bool Visibility { get; set; } = true;
-        public static bool IsVisible => Theme.Activated && Visibility;
-
-        // Temporary fix for Camera+
-        private static readonly bool CameraPlusLoaded = LoadedModManager.RunningModsListForReading.FirstOrDefault(mod => mod.Name == "Camera+")?.assemblies.loadedAssemblies.FirstOrDefault(assembly => assembly.GetName().Name == "CameraPlus") != null;
-
-        // Temporary backwards compatibility
-        public static int FadeStart { get => Theme.FadeStart; set => Theme.FadeStart = value; }
-        public static int FadeTime { get => Theme.FadeLength; set => Theme.FadeLength = value; }
-        public static int BubbleWidth { get => Theme.MaxWidth; set => Theme.MaxWidth = value; }
-        public static int BubblePadding { get => Theme.Spacing; set => Theme.Spacing = value; }
-        public static int MaxBubblesPerPawn { get => Theme.MaxPerPawn; set => Theme.MaxPerPawn = value; }
+        public static bool CanShow => Theme.Activated && Visibility && !WorldRendererUtility.WorldRenderedNow;
 
         private static readonly Dictionary<Pawn, List<Bubble>> Bubbles = new Dictionary<Pawn, List<Bubble>>();
 
         public static void Add(LogEntry entry)
         {
-            if (!(entry is PlayLogEntry_Interaction interaction)) { return; }
+            if (!CanShow || !(entry is PlayLogEntry_Interaction interaction)) { return; }
 
             var initiator = Traverse.Create(interaction).Field<Pawn>("initiator").Value;
             var recipient = Traverse.Create(interaction).Field<Pawn>("recipient").Value;
-            if (initiator == null) { return; }
+            if ((initiator == null) || (initiator.Map != Find.CurrentMap)) { return; }
 
             if ((!initiator.Faction?.IsPlayer ?? true) && !Theme.DoNonPlayer) { return; }
             if ((recipient?.RaceProps?.Animal ?? false) && !Theme.DoAnimals) { return; }
@@ -53,16 +43,20 @@ namespace Bubbles.Interface
             if (Bubbles[pawn].Count == 0) { Bubbles.Remove(pawn); }
         }
 
-        public static void Draw()
+        private static float GetScale()
         {
-            if (!IsVisible || WorldRendererUtility.WorldRenderedNow) { return; }
-
             var correction = UI.screenHeight / OptimalHeight;
-            var optimal = (CameraPlusLoaded ? CameraPlusOptimalZoom : OptimalZoom) * correction;
+            var optimal = (CameraPlus.Loaded ? CameraPlus.CameraPlusOptimalZoom : OptimalZoom) * correction;
             var minZoom = OptimalMinZoom * correction;
             var range = Mathf.Max((optimal - minZoom) * Theme.ScaleStart.ToPercentageFloat(), 1f);
-            var scale = Mathf.Min((Find.CameraDriver.CellSizePixels - minZoom) / range, 1f);
+            return Mathf.Min((Find.CameraDriver.CellSizePixels - minZoom) / range, 1f);
+        }
 
+        public static void Draw()
+        {
+            if (!CanShow) { return; }
+
+            var scale = GetScale();
             if (scale <= Theme.MinScale.ToPercentageFloat()) { return; }
 
             var selected = Find.Selector.SingleSelectedObject as Pawn;

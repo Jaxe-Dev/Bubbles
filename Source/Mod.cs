@@ -8,7 +8,7 @@ namespace Bubbles
     {
         public const string Id = "Bubbles";
         public const string Name = "Bubbles";
-        public const string Version = "1.4";
+        public const string Version = "1.5";
 
         static Mod()
         {
@@ -21,7 +21,7 @@ namespace Bubbles
 
         public class Exception : System.Exception
         {
-            public Exception(string message) : base($"[{Name} : EXCEPTION] {message}")
+            public Exception(string message) : base(PrefixMessage(message))
             { }
         }
     }
