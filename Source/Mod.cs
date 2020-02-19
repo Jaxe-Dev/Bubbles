@@ -1,4 +1,4 @@
-﻿using Harmony;
+using HarmonyLib;
 using Verse;
 
 namespace Bubbles
@@ -8,11 +8,15 @@ namespace Bubbles
     {
         public const string Id = "Bubbles";
         public const string Name = "Bubbles";
-        public const string Version = "1.5";
+        public const string Version = "1.6";
+
+        public static readonly Harmony Harmony;
 
         static Mod()
         {
-            HarmonyInstance.Create(Id).PatchAll();
+            Harmony = new Harmony(Id);
+            Harmony.PatchAll();
+
             Log("Initialized");
         }
 
@@ -21,8 +25,7 @@ namespace Bubbles
 
         public class Exception : System.Exception
         {
-            public Exception(string message) : base(PrefixMessage(message))
-            { }
+            public Exception(string message) : base(PrefixMessage(message)) { }
         }
     }
 }

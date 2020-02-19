@@ -14,13 +14,16 @@ namespace Bubbles.Interface
 
         private readonly DateTime _timeStart;
         private int _tickStart;
+        private readonly bool _combat;
 
-        public Bubble(string text)
+        public Bubble(TaggedString text, bool combat)
         {
-            _text = text;
+            _text = text.RawText.StripTags();
 
             _timeStart = DateTime.Now;
             _tickStart = -1;
+
+            _combat = combat;
         }
 
         private float GetFade()
@@ -40,6 +43,18 @@ namespace Bubbles.Interface
             return elasped < 0 ? 1f : fade;
         }
 
+        private Color GetColor(bool foreground, bool isSelected)
+        {
+            if (isSelected)
+            {
+                if (_combat) { return foreground ? Theme.CombatSelectedForeColor : Theme.CombatSelectedBackColor; }
+                return foreground ? Theme.SelectedForeColor : Theme.SelectedBackColor;
+            }
+
+            if (_combat) { return foreground ? Theme.CombatForeColor : Theme.CombatBackColor; }
+            return foreground ? Theme.ForeColor : Theme.BackColor;
+        }
+
         public bool Draw(Vector2 pos, bool isSelected, float scale)
         {
             var direction = Theme.GetOffsetDirection();
@@ -49,6 +64,7 @@ namespace Bubbles.Interface
             var paddingX = Mathf.CeilToInt(Theme.PaddingX * scale);
             var paddingY = Mathf.CeilToInt(Theme.PaddingY * scale);
             var maxWidth = Mathf.CeilToInt(Theme.MaxWidth * scale);
+
             var content = new GUIContent(_text);
 
             Width = Mathf.CeilToInt(Mathf.Min(font.CalcSize(content).x + (paddingX * 2), maxWidth));
@@ -66,8 +82,8 @@ namespace Bubbles.Interface
             var fade = Mathf.Min(GetFade(), Mouse.IsOver(outer) ? Theme.MouseOverOpacity.ToPercentageFloat() : 1f);
             if (fade <= 0f) { return false; }
 
-            var backColor = (isSelected ? Theme.SelectedBackColor : Theme.BackColor).WithAlpha(fade);
-            var foreColor = (isSelected ? Theme.SelectedForeColor : Theme.ForeColor).WithAlpha(fade);
+            var backColor = GetColor(false, isSelected).WithAlpha(fade);
+            var foreColor = GetColor(true, isSelected).WithAlpha(fade);
 
             var prevColor = GUI.color;
 
