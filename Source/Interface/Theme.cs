@@ -10,10 +10,9 @@ namespace Bubbles.Interface
         public static bool Activated { get; set; } = true;
         public static bool DoAnimals { get; set; } = true;
         public static bool DoNonPlayer { get; set; } = true;
-        public static bool DoInjuries { get; set; } = false;
+        public static bool DoCombat { get; set; } = false;
         public static bool DoSound { get; set; } = false;
 
-        public static int MaxZoom { get => MinScale; set => MinScale = value; } // Backcompat
         public static int ScaleStart { get; set; } = 100;
         public static int MinScale { get; set; } = 35;
         public static int MaxWidth { get; set; } = 250;
@@ -33,8 +32,12 @@ namespace Bubbles.Interface
 
         public static Color BackColor { get; set; } = Color.white;
         public static Color ForeColor { get; set; } = Color.black;
-        public static Color SelectedBackColor { get; set; } = new Color(1f, 1f, 0.75f);
         public static Color SelectedForeColor { get; set; } = Color.black;
+        public static Color SelectedBackColor { get; set; } = new Color(1f, 1f, 0.75f);
+        public static Color CombatForeColor { get; set; } = Color.black;
+        public static Color CombatBackColor { get; set; } = new Color(1f, 0.3f, 0.3f);
+        public static Color CombatSelectedForeColor { get; set; } = Color.black;
+        public static Color CombatSelectedBackColor { get; set; } = new Color(1f, 0.5f, 0.5f);
 
         public static GUIStyle GetFont(float scale) => new GUIStyle(BaseFontStyle) { fontSize = Mathf.CeilToInt(FontSize * scale) };
 
