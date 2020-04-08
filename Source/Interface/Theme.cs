@@ -5,8 +5,6 @@ namespace Bubbles.Interface
 {
     internal static class Theme
     {
-        private static readonly GUIStyle BaseFontStyle = new GUIStyle(Text.fontStyles[(int) GameFont.Medium]) { alignment = TextAnchor.MiddleCenter, clipping = TextClipping.Clip, padding = new RectOffset(0, 0, 0, 0) };
-
         public static bool Activated { get; set; } = true;
         public static bool DoAnimals { get; set; } = true;
         public static bool DoNonPlayer { get; set; } = true;
@@ -39,7 +37,13 @@ namespace Bubbles.Interface
         public static Color CombatSelectedForeColor { get; set; } = Color.black;
         public static Color CombatSelectedBackColor { get; set; } = new Color(1f, 0.5f, 0.5f);
 
-        public static GUIStyle GetFont(float scale) => new GUIStyle(BaseFontStyle) { fontSize = Mathf.CeilToInt(FontSize * scale) };
+        public static GUIStyle GetFont(float scale) => new GUIStyle(Text.CurFontStyle)
+        {
+            alignment = TextAnchor.MiddleCenter,
+            clipping = TextClipping.Clip,
+            padding = new RectOffset(0, 0, 0, 0),
+            fontSize = Mathf.CeilToInt(FontSize * scale)
+        };
 
         public static Rot4 GetOffsetDirection() => new Rot4(OffsetDirection);
     }
