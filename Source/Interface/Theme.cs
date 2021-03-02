@@ -1,46 +1,42 @@
 ﻿using UnityEngine;
-using Verse;
 
 namespace Bubbles.Interface
 {
+    // Legacy for old RimHUD. Should be removed next version
     internal static class Theme
     {
-        private static readonly GUIStyle BaseFontStyle = new GUIStyle(Text.fontStyles[(int) GameFont.Medium]) { alignment = TextAnchor.MiddleCenter, clipping = TextClipping.Clip, padding = new RectOffset(0, 0, 0, 0) };
+        public static bool Activated { get => Mod.Settings.Activated; set => Mod.Settings.Activated = value; }
 
-        public static bool Activated { get; set; } = true;
-        public static bool DoAnimals { get; set; } = true;
-        public static bool DoNonPlayer { get; set; } = true;
-        public static bool DoCombat { get; set; } = false;
-        public static bool DoSound { get; set; } = false;
+        public static bool DoNonPlayer { get => Mod.Settings.DoNonPlayer; set => Mod.Settings.DoNonPlayer = value; }
+        public static bool DoAnimals { get => Mod.Settings.DoAnimals; set => Mod.Settings.DoAnimals = value; }
+        public static bool DoDrafted { get => Mod.Settings.DoDrafted; set => Mod.Settings.DoDrafted = value; }
+        public static bool DoCombat { get => Mod.Settings.DoCombat; set => Mod.Settings.DoCombat = value; }
 
-        public static int ScaleStart { get; set; } = 100;
-        public static int MinScale { get; set; } = 35;
-        public static int MaxWidth { get; set; } = 250;
-        public static int Spacing { get; set; } = 2;
-        public static int StartOffset { get; set; } = 15;
-        public static int OffsetDirection { get; set; } = 0;
-        public static int StartOpacity { get; set; } = 90;
-        public static int MouseOverOpacity { get; set; } = 20;
-        public static int MinTime { get; set; } = 0;
-        public static int FadeStart { get; set; } = 500;
-        public static int FadeLength { get; set; } = 250;
-        public static int MaxPerPawn { get; set; } = 3;
+        public static int FontSize { get => Mod.Settings.FontSize; set => Mod.Settings.FontSize = value; }
+        public static int PaddingX { get => Mod.Settings.PaddingX; set => Mod.Settings.PaddingX = value; }
+        public static int PaddingY { get => Mod.Settings.PaddingY; set => Mod.Settings.PaddingY = value; }
 
-        public static int FontSize { get; set; } = 12;
-        public static int PaddingX { get; set; } = 4;
-        public static int PaddingY { get; set; } = 2;
+        public static int ScaleStart { get => Mod.Settings.ScaleStart; set => Mod.Settings.ScaleStart = value; }
+        public static int MinScale { get => Mod.Settings.ScaleMin; set => Mod.Settings.ScaleMin = value; }
+        public static int MaxWidth { get => Mod.Settings.WidthMax; set => Mod.Settings.WidthMax = value; }
+        public static int Spacing { get => Mod.Settings.Spacing; set => Mod.Settings.Spacing = value; }
+        public static int StartOffset { get => Mod.Settings.OffsetStart; set => Mod.Settings.OffsetStart = value; }
+        public static int OffsetDirection { get => Mod.Settings.OffsetDirection; set => Mod.Settings.OffsetDirection = value; }
+        public static int StartOpacity { get => Mod.Settings.OpacityStart; set => Mod.Settings.OpacityStart = value; }
+        public static int MouseOverOpacity { get => Mod.Settings.OpacityMouseOver; set => Mod.Settings.OpacityMouseOver = value; }
+        public static int MinTime { get => Mod.Settings.TimeMin; set => Mod.Settings.TimeMin = value; }
+        public static int FadeStart { get => Mod.Settings.FadeStart; set => Mod.Settings.FadeStart = value; }
+        public static int FadeLength { get => Mod.Settings.FadeLength; set => Mod.Settings.FadeLength = value; }
+        public static int MaxPerPawn { get => Mod.Settings.PawnMax; set => Mod.Settings.PawnMax = value; }
 
-        public static Color BackColor { get; set; } = Color.white;
-        public static Color ForeColor { get; set; } = Color.black;
-        public static Color SelectedForeColor { get; set; } = Color.black;
-        public static Color SelectedBackColor { get; set; } = new Color(1f, 1f, 0.75f);
-        public static Color CombatForeColor { get; set; } = Color.black;
-        public static Color CombatBackColor { get; set; } = new Color(1f, 0.3f, 0.3f);
-        public static Color CombatSelectedForeColor { get; set; } = Color.black;
-        public static Color CombatSelectedBackColor { get; set; } = new Color(1f, 0.5f, 0.5f);
+        public static Color BackColor { get => Mod.Settings.BackColor; set => Mod.Settings.BackColor = value; }
+        public static Color ForeColor { get => Mod.Settings.ForeColor; set => Mod.Settings.ForeColor = value; }
+        public static Color SelectedForeColor { get => Mod.Settings.ForeColorSelected; set => Mod.Settings.ForeColorSelected = value; }
+        public static Color SelectedBackColor { get => Mod.Settings.BackColorSelected; set => Mod.Settings.BackColorSelected = value; }
 
-        public static GUIStyle GetFont(float scale) => new GUIStyle(BaseFontStyle) { fontSize = Mathf.CeilToInt(FontSize * scale) };
-
-        public static Rot4 GetOffsetDirection() => new Rot4(OffsetDirection);
+        public static Color CombatForeColor { get => Mod.Settings.ForeColorCombat; set => Mod.Settings.ForeColorCombat = value; }
+        public static Color CombatBackColor { get => Mod.Settings.BackColorCombat; set => Mod.Settings.BackColorCombat = value; }
+        public static Color CombatSelectedForeColor { get => Mod.Settings.ForeColorCombatSelected; set => Mod.Settings.ForeColorCombatSelected = value; }
+        public static Color CombatSelectedBackColor { get => Mod.Settings.BackColorCombatSelected; set => Mod.Settings.BackColorCombatSelected = value; }
     }
 }
