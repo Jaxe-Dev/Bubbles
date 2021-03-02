@@ -41,7 +41,7 @@ namespace Bubbles
         private static readonly Color DefaultForeColorCombatSelected = Color.black;
         private static readonly Color DefaultBackColorCombatSelected = new Color(1f, 0.5f, 0.5f);
 
-        private static readonly GUIStyle BaseFontStyle = new GUIStyle(Text.fontStyles[(int) GameFont.Medium]) { alignment = TextAnchor.MiddleCenter, clipping = TextClipping.Clip, padding = new RectOffset(0, 0, 0, 0) };
+//        private static readonly GUIStyle BaseFontStyle = new GUIStyle(Text.fontStyles[(int) GameFont.Medium]) { alignment = TextAnchor.MiddleCenter, clipping = TextClipping.Clip, padding = new RectOffset(0, 0, 0, 0) };
 
         public bool Activated = DefaultActivated;
 
@@ -91,7 +91,13 @@ namespace Bubbles
         private Vector2 _scrollPosition = Vector2.zero;
         private Rect _viewRect;
 
-        public static GUIStyle GetFont(float scale) => new GUIStyle(BaseFontStyle) { fontSize = Mathf.CeilToInt(Bubbles.Mod.Settings.FontSize * scale) };
+        public static GUIStyle GetFont(float scale) => new GUIStyle(Text.CurFontStyle)
+        {
+            alignment = TextAnchor.MiddleCenter,
+            clipping = TextClipping.Clip,
+            padding = new RectOffset(0, 0, 0, 0),
+            fontSize = Mathf.CeilToInt(Bubbles.Mod.Settings.FontSize * scale)
+        };
 
         public static Rot4 GetOffsetDirection() => new Rot4(Bubbles.Mod.Settings.OffsetDirection);
 
