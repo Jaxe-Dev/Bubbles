@@ -41,8 +41,6 @@ namespace Bubbles
         private static readonly Color DefaultForeColorCombatSelected = Color.black;
         private static readonly Color DefaultBackColorCombatSelected = new Color(1f, 0.5f, 0.5f);
 
-//        private static readonly GUIStyle BaseFontStyle = new GUIStyle(Text.fontStyles[(int) GameFont.Medium]) { alignment = TextAnchor.MiddleCenter, clipping = TextClipping.Clip, padding = new RectOffset(0, 0, 0, 0) };
-
         public bool Activated = DefaultActivated;
 
         public bool DoNonPlayer = DefaultDoNonPlayer;
