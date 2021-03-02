@@ -1,5 +1,4 @@
-﻿using Bubbles.Data;
-using Bubbles.Interface;
+﻿using Bubbles.Interface;
 using HarmonyLib;
 using RimWorld;
 using Verse;
@@ -11,10 +10,10 @@ namespace Bubbles.Patch
     {
         private static void Postfix(WidgetRow row, bool worldView)
         {
-            if (worldView || (row == null)) { return; }
+            if (worldView || row == null) { return; }
 
             var activated = Bubbler.Visibility;
-            row.ToggleableIcon(ref activated, Textures.Icon, Lang.Get("Toggle"), SoundDefOf.Mouseover_ButtonToggle);
+            row.ToggleableIcon(ref activated, Textures.Icon, "Bubbles.Toggle".Translate(), SoundDefOf.Mouseover_ButtonToggle);
             Bubbler.Visibility = activated;
         }
     }

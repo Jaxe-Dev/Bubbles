@@ -7,10 +7,11 @@ namespace Bubbles
     internal static class Mod
     {
         public const string Id = "Bubbles";
-        public const string Name = "Bubbles";
-        public const string Version = "1.6.2";
+        public const string Name = "Interaction Bubbles";
+        public const string Version = "1.7";
 
         public static readonly Harmony Harmony;
+        public static Settings Settings;
 
         static Mod()
         {
@@ -22,10 +23,5 @@ namespace Bubbles
 
         public static void Log(string message) => Verse.Log.Message(PrefixMessage(message));
         private static string PrefixMessage(string message) => $"[{Name} v{Version}] {message}";
-
-        public class Exception : System.Exception
-        {
-            public Exception(string message) : base(PrefixMessage(message)) { }
-        }
     }
 }

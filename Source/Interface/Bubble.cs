@@ -30,16 +30,16 @@ namespace Bubbles.Interface
         {
             if (_tickStart == -1)
             {
-                if ((DateTime.Now - _timeStart).TotalMilliseconds > Theme.MinTime) { _tickStart = Find.TickManager.TicksAbs; }
-                return Theme.StartOpacity.ToPercentageFloat();
+                if ((DateTime.Now - _timeStart).TotalMilliseconds > Mod.Settings.TimeMin) { _tickStart = Find.TickManager.TicksAbs; }
+                return Mod.Settings.OpacityStart.ToPercentageFloat();
             }
 
-            var elasped = Find.TickManager.TicksAbs - _tickStart - Theme.FadeStart;
+            var elasped = Find.TickManager.TicksAbs - _tickStart - Mod.Settings.FadeStart;
 
-            if (elasped <= 0f) { return Theme.StartOpacity.ToPercentageFloat(); }
-            if (elasped > Theme.FadeLength) { return 0f; }
+            if (elasped <= 0f) { return Mod.Settings.OpacityStart.ToPercentageFloat(); }
+            if (elasped > Mod.Settings.FadeLength) { return 0f; }
 
-            var fade = Theme.StartOpacity.ToPercentageFloat() * (1f - (elasped / (float) Theme.FadeLength));
+            var fade = Mod.Settings.OpacityStart.ToPercentageFloat() * (1f - (elasped / (float) Mod.Settings.FadeLength));
             return elasped < 0 ? 1f : fade;
         }
 
@@ -47,23 +47,23 @@ namespace Bubbles.Interface
         {
             if (isSelected)
             {
-                if (_combat) { return foreground ? Theme.CombatSelectedForeColor : Theme.CombatSelectedBackColor; }
-                return foreground ? Theme.SelectedForeColor : Theme.SelectedBackColor;
+                if (_combat) { return foreground ? Mod.Settings.ForeColorCombatSelected : Mod.Settings.BackColorCombatSelected; }
+                return foreground ? Mod.Settings.ForeColorSelected : Mod.Settings.BackColorSelected;
             }
 
-            if (_combat) { return foreground ? Theme.CombatForeColor : Theme.CombatBackColor; }
-            return foreground ? Theme.ForeColor : Theme.BackColor;
+            if (_combat) { return foreground ? Mod.Settings.ForeColorCombat : Mod.Settings.BackColorCombat; }
+            return foreground ? Mod.Settings.ForeColor : Mod.Settings.BackColor;
         }
 
         public bool Draw(Vector2 pos, bool isSelected, float scale)
         {
-            var direction = Theme.GetOffsetDirection();
+            var direction = Settings.GetOffsetDirection();
 
-            var font = Theme.GetFont(scale);
+            var font = Settings.GetFont(scale);
 
-            var paddingX = Mathf.CeilToInt(Theme.PaddingX * scale);
-            var paddingY = Mathf.CeilToInt(Theme.PaddingY * scale);
-            var maxWidth = Mathf.CeilToInt(Theme.MaxWidth * scale);
+            var paddingX = Mathf.CeilToInt(Mod.Settings.PaddingX * scale);
+            var paddingY = Mathf.CeilToInt(Mod.Settings.PaddingY * scale);
+            var maxWidth = Mathf.CeilToInt(Mod.Settings.WidthMax * scale);
 
             var content = new GUIContent(_text);
 
@@ -79,7 +79,7 @@ namespace Bubbles.Interface
             var outer = new Rect(Mathf.CeilToInt(posX), Mathf.CeilToInt(posY), Width, Height);
             var inner = outer.ContractedBy(paddingX, paddingY);
 
-            var fade = Mathf.Min(GetFade(), Mouse.IsOver(outer) ? Theme.MouseOverOpacity.ToPercentageFloat() : 1f);
+            var fade = Mathf.Min(GetFade(), Mouse.IsOver(outer) ? Mod.Settings.OpacityMouseOver.ToPercentageFloat() : 1f);
             if (fade <= 0f) { return false; }
 
             var backColor = GetColor(false, isSelected).WithAlpha(fade);
