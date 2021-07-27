@@ -28,8 +28,8 @@ namespace Bubbles
         private const int DefaultPawnMax = 3;
 
         private const int DefaultFontSize = 12;
-        private const int DefaultPaddingX = 4;
-        private const int DefaultPaddingY = 2;
+        private const int DefaultPaddingX = 6;
+        private const int DefaultPaddingY = 3;
 
         private static readonly Color DefaultBackColor = Color.white;
         private static readonly Color DefaultForeColor = Color.black;

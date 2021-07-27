@@ -60,7 +60,6 @@
     <Compile Include="Interface\Bubble.cs" />
     <Compile Include="Interface\Bubbler.cs" />
     <Compile Include="Interface\Textures.cs" />
-    <Compile Include="Interface\Theme.cs" />
     <Compile Include="Patch\Extensions.cs" />
     <Compile Include="Patch\RimWorld_PlaySettings_DoPlaySettingsGlobalControls.cs" />
     <Compile Include="Patch\Verse_BattleLog_Add.cs" />
