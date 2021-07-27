@@ -7,7 +7,7 @@ namespace Bubbles.Interface
     {
         private const float ScrollbarWidth = 20f;
 
-        public new void BeginScrollView(Rect rect, ref Vector2 scrollPosition, ref Rect viewRect)
+        public void BeginScrollView(Rect rect, ref Vector2 scrollPosition, ref Rect viewRect)
         {
             if (viewRect == default) { viewRect = new Rect(rect.x, rect.y, rect.width - ScrollbarWidth, 99999f); }
 
@@ -16,7 +16,7 @@ namespace Bubbles.Interface
             Begin(viewRect);
         }
 
-        public new void EndScrollView(ref Rect viewRect)
+        public void EndScrollView(ref Rect viewRect)
         {
             End();
             Widgets.EndScrollView();

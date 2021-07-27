@@ -8,7 +8,7 @@ namespace Bubbles
     {
         public const string Id = "Bubbles";
         public const string Name = "Interaction Bubbles";
-        public const string Version = "1.7";
+        public const string Version = "1.8";
 
         public static readonly Harmony Harmony;
         public static Settings Settings;
