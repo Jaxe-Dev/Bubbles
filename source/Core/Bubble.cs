@@ -114,7 +114,9 @@ namespace Bubbles.Core
       rect.yMax = Widgets.AdjustCoordToUIScalingCeil(rect.yMax);
 
       var scale = Mathf.RoundToInt(Mathf.Min(atlas.width * 0.25f, rect.height / 4f, rect.width / 4f));
-      Widgets.BeginGroup(rect);
+
+      if (Compatibility.HasSteamDeckUpdate) { Widgets.BeginGroup(rect); }
+      else { GUI.BeginGroup(rect); }
 
       Widgets.DrawTexturePart(new Rect(0.0f, 0.0f, scale, scale), new Rect(0.0f, 0.0f, 0.25f, 0.25f), atlas);
       Widgets.DrawTexturePart(new Rect(rect.width - scale, 0.0f, scale, scale), new Rect(0.75f, 0.0f, 0.25f, 0.25f), atlas);
@@ -128,7 +130,8 @@ namespace Bubbles.Core
       Widgets.DrawTexturePart(new Rect(0.0f, scale, scale, rect.height - (scale * 2f)), new Rect(0.0f, 0.25f, 0.25f, 0.5f), atlas);
       Widgets.DrawTexturePart(new Rect(rect.width - scale, scale, scale, rect.height - (scale * 2f)), new Rect(0.75f, 0.25f, 0.25f, 0.5f), atlas);
 
-      Widgets.EndGroup();
+      if (Compatibility.HasSteamDeckUpdate) { Widgets.EndGroup(); }
+      else { GUI.EndGroup(); }
     }
 
     public void Rebuild() => _text = null;
