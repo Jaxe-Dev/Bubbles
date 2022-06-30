@@ -9,7 +9,6 @@ namespace Bubbles.Core
 {
   public static class Bubbler
   {
-    private const float MinAltitudeMultiplier = 0.5f;
     private const float LabelPositionOffset = -0.6f;
 
     private static readonly Dictionary<Pawn, List<Bubble>> Dictionary = new Dictionary<Pawn, List<Bubble>>();
@@ -42,12 +41,10 @@ namespace Bubbles.Core
       if (!GetApplicable()) { return; }
 
       var altitude = GetAltitude();
-      if (altitude > Settings.AltitudeMax.Value) { return; }
-
-      var minAltitude = Settings.AltitudeBase.Value * MinAltitudeMultiplier;
-      if (altitude < minAltitude) { altitude = minAltitude; }
+      if (altitude <= 0 || altitude > Settings.AltitudeMax.Value) { return; }
 
       var scale = Settings.AltitudeBase.Value / altitude;
+      if (scale > Settings.ScaleMax.Value) { scale = Settings.ScaleMax.Value; }
 
       var selected = Find.Selector.SingleSelectedObject as Pawn;
 

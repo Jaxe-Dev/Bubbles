@@ -33,17 +33,18 @@ namespace Bubbles.Configuration
 
       l.SliderLabeled("Bubbles.AutoHideSpeed".Translate(), ref Settings.AutoHideSpeed.Value, 5, 1, display: Settings.AutoHideSpeed.Value == 5 ? "Bubbles.AutoHideSpeedOff".Translate().ToString() : Settings.AutoHideSpeed.Value.ToString());
 
-      l.SliderLabeled("Bubbles.AltitudeBase".Translate(), ref Settings.AltitudeBase.Value, 4, 44);
+      l.SliderLabeled("Bubbles.AltitudeBase".Translate(), ref Settings.AltitudeBase.Value, 3, 44);
       l.SliderLabeled("Bubbles.AltitudeMax".Translate(), ref Settings.AltitudeMax.Value, 20, 60);
-      l.SliderLabeled("Bubbles.PawnMax".Translate(), ref Settings.PawnMax.Value, 1, 10);
+      l.SliderLabeled("Bubbles.ScaleMax".Translate(), ref Settings.ScaleMax.Value, 1f, 5f, 0.05f, Settings.ScaleMax.Value.ToStringPercent());
+      l.SliderLabeled("Bubbles.PawnMax".Translate(), ref Settings.PawnMax.Value, 1, 15);
 
-      l.SliderLabeled("Bubbles.FontSize".Translate(), ref Settings.FontSize.Value, 9, 30);
-      l.SliderLabeled("Bubbles.PaddingX".Translate(), ref Settings.PaddingX.Value, 1, 20);
-      l.SliderLabeled("Bubbles.PaddingY".Translate(), ref Settings.PaddingY.Value, 1, 20);
-      l.SliderLabeled("Bubbles.WidthMax".Translate(), ref Settings.WidthMax.Value, 100, 500);
+      l.SliderLabeled("Bubbles.FontSize".Translate(), ref Settings.FontSize.Value, 5, 30);
+      l.SliderLabeled("Bubbles.PaddingX".Translate(), ref Settings.PaddingX.Value, 1, 40);
+      l.SliderLabeled("Bubbles.PaddingY".Translate(), ref Settings.PaddingY.Value, 1, 40);
+      l.SliderLabeled("Bubbles.WidthMax".Translate(), ref Settings.WidthMax.Value, 100, 500, 4);
 
       l.SliderLabeled("Bubbles.OffsetSpacing".Translate(), ref Settings.OffsetSpacing.Value, 2, 12);
-      l.SliderLabeled("Bubbles.OffsetStart".Translate(), ref Settings.OffsetStart.Value, 0, 250);
+      l.SliderLabeled("Bubbles.OffsetStart".Translate(), ref Settings.OffsetStart.Value, 0, 400, 4);
 
       var offsetDirection = Settings.OffsetDirection.Value.AsInt;
       l.SliderLabeled("Bubbles.OffsetDirection".Translate(), ref offsetDirection, 0, 3, display: "Bubbles.OffsetDirections".Translate().ToString().Split('|').ElementAtOrDefault(offsetDirection));
@@ -51,8 +52,8 @@ namespace Bubbles.Configuration
 
       l.SliderLabeled("Bubbles.OpacityStart".Translate(), ref Settings.OpacityStart.Value, 0.3f, 1f, 0.05f, Settings.OpacityStart.Value.ToStringPercent());
       l.SliderLabeled("Bubbles.OpacityHover".Translate(), ref Settings.OpacityHover.Value, 0.05f, 1f, 0.05f, Settings.OpacityHover.Value.ToStringPercent());
-      l.SliderLabeled("Bubbles.FadeStart".Translate(), ref Settings.FadeStart.Value, 1, 2000, 50);
-      l.SliderLabeled("Bubbles.FadeLength".Translate(), ref Settings.FadeLength.Value, 1, 2000, 50);
+      l.SliderLabeled("Bubbles.FadeStart".Translate(), ref Settings.FadeStart.Value, 100, 5000, 50);
+      l.SliderLabeled("Bubbles.FadeLength".Translate(), ref Settings.FadeLength.Value, 50, 2500, 50);
 
       l.ColorEntry("Bubbles.Background".Translate(), ref _colorBuffer[0], ref Settings.Background.Value);
       l.ColorEntry("Bubbles.Foreground".Translate(), ref _colorBuffer[1], ref Settings.Foreground.Value);

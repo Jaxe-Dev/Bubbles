@@ -11,6 +11,7 @@
   <Bubbles.AutoHideSpeedOff>Off</Bubbles.AutoHideSpeedOff>
   <Bubbles.AltitudeBase>Base altitude</Bubbles.AltitudeBase>
   <Bubbles.AltitudeMax>Maximum visible altitude</Bubbles.AltitudeMax>
+  <Bubbles.ScaleMax>Maximum scale</Bubbles.ScaleMax>
   <Bubbles.PawnMax>Maximum per pawn</Bubbles.PawnMax>
   <Bubbles.OffsetSpacing>Spacing</Bubbles.OffsetSpacing>
   <Bubbles.OffsetStart>Offset from label</Bubbles.OffsetStart>
