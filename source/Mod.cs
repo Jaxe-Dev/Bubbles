@@ -9,7 +9,7 @@ namespace Bubbles
   {
     public const string Id = "Bubbles";
     public const string Name = "Interaction Bubbles";
-    public const string Version = "2.2";
+    public const string Version = "2.3";
 
     public static Mod Instance;
 
@@ -24,6 +24,7 @@ namespace Bubbles
     }
 
     public static void Log(string message) => Verse.Log.Message(PrefixMessage(message));
+    public static void Error(string message) => Verse.Log.Error(PrefixMessage(message));
     private static string PrefixMessage(string message) => $"[{Name} v{Version}] {message}";
 
     public override void DoSettingsWindowContents(Rect inRect)
