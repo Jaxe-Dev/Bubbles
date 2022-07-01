@@ -57,7 +57,7 @@ namespace Bubbles.Core
 
       var pos = GenMapUI.LabelDrawPosFor(pawn, LabelPositionOffset);
 
-      var offset = Mathf.Ceil(Settings.OffsetStart.Value * scale);
+      var offset = Settings.OffsetStart.Value;
       var count = 0;
 
       foreach (var bubble in Dictionary[pawn].OrderByDescending(b => b.Entry.Tick).ToArray())

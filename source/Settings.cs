@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Bubbles.Configuration;
 using HarmonyLib;
 using UnityEngine;
@@ -9,6 +10,9 @@ namespace Bubbles
 {
   public class Settings : ModSettings
   {
+    private static readonly string[] SameConfigVersions = { };
+    private static bool _resetRequired;
+
     public static bool Activated = true;
 
     public static readonly Setting<int> AutoHideSpeed = new Setting<int>(nameof(AutoHideSpeed), 5);
@@ -29,7 +33,7 @@ namespace Bubbles
     public static readonly Setting<int> WidthMax = new Setting<int>(nameof(WidthMax), 256);
 
     public static readonly Setting<int> OffsetSpacing = new Setting<int>(nameof(OffsetSpacing), 2);
-    public static readonly Setting<int> OffsetStart = new Setting<int>(nameof(OffsetStart), 16);
+    public static readonly Setting<int> OffsetStart = new Setting<int>(nameof(OffsetStart), 14);
     public static readonly Setting<Rot4> OffsetDirection = new Setting<Rot4>(nameof(OffsetDirection), Rot4.North);
 
     public static readonly Setting<float> OpacityStart = new Setting<float>(nameof(OpacityStart), 0.9f);
@@ -46,6 +50,30 @@ namespace Bubbles
     private static IEnumerable<Setting> AllSettings => typeof(Settings).GetFields().Select(field => field.GetValue(null) as Setting).Where(setting => setting != null);
 
     public static void Reset() => AllSettings.Do(setting => setting.ToDefault());
-    public override void ExposeData() => AllSettings.Do(setting => setting.Scribe());
+
+    public void CheckResetRequired()
+    {
+      if (!_resetRequired) { return; }
+      _resetRequired = false;
+
+      Write();
+
+      Bubbles.Mod.Warning("Settings were reset with new update");
+    }
+
+    public override void ExposeData()
+    {
+      if (_resetRequired) { return; }
+
+      var version = Scribe.mode == LoadSaveMode.Saving ? Bubbles.Mod.Version : null;
+      Scribe_Values.Look(ref version, "Version");
+      if (Scribe.mode == LoadSaveMode.LoadingVars && (version == null || (version != Bubbles.Mod.Version && !SameConfigVersions.Contains(Regex.Match(version, "^\\d+\\.\\d+").Value))))
+      {
+        _resetRequired = true;
+        return;
+      }
+
+      AllSettings.Do(setting => setting.Scribe());
+    }
   }
 }
