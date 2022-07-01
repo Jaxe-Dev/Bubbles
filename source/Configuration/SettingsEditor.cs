@@ -44,7 +44,7 @@ namespace Bubbles.Configuration
       l.SliderLabeled("Bubbles.WidthMax".Translate(), ref Settings.WidthMax.Value, 100, 500, 4);
 
       l.SliderLabeled("Bubbles.OffsetSpacing".Translate(), ref Settings.OffsetSpacing.Value, 2, 12);
-      l.SliderLabeled("Bubbles.OffsetStart".Translate(), ref Settings.OffsetStart.Value, 0, 400, 4);
+      l.SliderLabeled("Bubbles.OffsetStart".Translate(), ref Settings.OffsetStart.Value, 0, 400, 2);
 
       var offsetDirection = Settings.OffsetDirection.Value.AsInt;
       l.SliderLabeled("Bubbles.OffsetDirection".Translate(), ref offsetDirection, 0, 3, display: "Bubbles.OffsetDirections".Translate().ToString().Split('|').ElementAtOrDefault(offsetDirection));
