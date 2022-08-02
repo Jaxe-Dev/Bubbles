@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Bubbles.Toggle>显示气泡</Bubbles.Toggle>
+  <Bubbles.ResetToDefault>重置为默认值</Bubbles.ResetToDefault>
+  <Bubbles.DoNonPlayer>显示其他派系</Bubbles.DoNonPlayer>
+  <Bubbles.DoAnimals>显示动物</Bubbles.DoAnimals>
+  <Bubbles.DoDrafted>徵召时显示</Bubbles.DoDrafted>
+  <Bubbles.DoCombat>显示战斗交互</Bubbles.DoCombat>
+  <Bubbles.ScaleStart>缩放到初始比例</Bubbles.ScaleStart>
+  <Bubbles.ScaleMin>最小可见缩放</Bubbles.ScaleMin>
+  <Bubbles.WidthMax>最大宽度</Bubbles.WidthMax>
+  <Bubbles.Spacing>间距</Bubbles.Spacing>
+  <Bubbles.OffsetStart>标签偏移量</Bubbles.OffsetStart>
+  <Bubbles.OffsetDirection>偏移方向</Bubbles.OffsetDirection>
+  <Bubbles.OffsetDirections>下|左|上|右</Bubbles.OffsetDirections>
+  <Bubbles.OpacityStart>初始不透明度</Bubbles.OpacityStart>
+  <Bubbles.OpacityMouseOver>鼠标悬停时的不透明度</Bubbles.OpacityMouseOver>
+  <Bubbles.TimeMin>最小褪色时间</Bubbles.TimeMin>
+  <Bubbles.FadeStart>开始褪色时间</Bubbles.FadeStart>
+  <Bubbles.FadeLength>褪色时间</Bubbles.FadeLength>
+  <Bubbles.PawnMax>每个人的最大值</Bubbles.PawnMax>
+  <Bubbles.FontSize>字体大小</Bubbles.FontSize>
+  <Bubbles.PaddingX>文本填充X</Bubbles.PaddingX>
+  <Bubbles.PaddingY>文本填充Y</Bubbles.PaddingY>
+  <Bubbles.ForeColor>文本颜色</Bubbles.ForeColor>
+  <Bubbles.BackColor>背景颜色</Bubbles.BackColor>
+  <Bubbles.ForeColorSelected>文本颜色（选择）</Bubbles.ForeColorSelected>
+  <Bubbles.BackColorSelected>背景颜色（选选择）</Bubbles.BackColorSelected>
+  <Bubbles.ForeColorCombat>战斗文本颜色</Bubbles.ForeColorCombat>
+  <Bubbles.BackColorCombat>战斗文本背景颜色</Bubbles.BackColorCombat>
+  <Bubbles.ForeColorCombatSelected>战斗文本颜色 （选择）</Bubbles.ForeColorCombatSelected>
+  <Bubbles.BackColorCombatSelected>战斗文本背景颜色 （选择）</Bubbles.BackColorCombatSelected>
+</LanguageData>
