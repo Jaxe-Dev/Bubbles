@@ -1,6 +1,5 @@
 using Bubbles.Configuration;
 using HarmonyLib;
-using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -10,7 +9,7 @@ namespace Bubbles
   {
     public const string Id = "Bubbles";
     public const string Name = "Interaction Bubbles";
-    public const string Version = "2.4";
+    public const string Version = "2.5";
 
     public static Mod Instance;
 
@@ -25,8 +24,6 @@ namespace Bubbles
 
       Log("Initialized");
     }
-
-
 
     public static void Log(string message) => Verse.Log.Message(PrefixMessage(message));
     public static void Warning(string message) => Verse.Log.Warning(PrefixMessage(message));
