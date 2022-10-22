@@ -10,7 +10,10 @@ namespace Bubbles
 {
   public class Settings : ModSettings
   {
-    private static readonly string[] SameConfigVersions = { };
+    private static readonly string[] SameConfigVersions =
+    {
+      "2.4"
+    };
     private static bool _resetRequired;
 
     public static bool Activated = true;
