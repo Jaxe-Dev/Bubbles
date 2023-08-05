@@ -4,4 +4,6 @@ _*
 *.user
 *.pdb
 !/.gitignore
+!/*.md
+!/*.sln
 !/source/

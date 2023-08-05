@@ -69,7 +69,7 @@ namespace Bubbles.Core
     private void ScaleFont(ref float scale)
     {
       Style.fontSize = Mathf.RoundToInt(Settings.FontSize.Value * scale);
-      scale = Style.fontSize / (float) Settings.FontSize.Value;
+      scale = Style.fontSize / (float)Settings.FontSize.Value;
     }
 
     private void ScalePadding(float scale)
@@ -99,7 +99,7 @@ namespace Bubbles.Core
       if (elasped <= 0) { return Settings.OpacityStart.Value; }
       if (elasped > Settings.FadeLength.Value) { return 0f; }
 
-      var fade = Settings.OpacityStart.Value * (1f - (elasped / (float) Settings.FadeLength.Value));
+      var fade = Settings.OpacityStart.Value * (1f - (elasped / (float)Settings.FadeLength.Value));
       return fade;
     }
 
