@@ -69,7 +69,7 @@ namespace Bubbles.Core
       }
     }
 
-    private static bool GetApplicable() => Settings.Activated && !WorldRendererUtility.WorldRenderedNow && (Settings.AutoHideSpeed.Value == 5 || (int) Find.TickManager.CurTimeSpeed < Settings.AutoHideSpeed.Value);
+    private static bool GetApplicable() => Settings.Activated && !WorldRendererUtility.WorldRenderedNow && (Settings.AutoHideSpeed.Value == Settings.AutoHideSpeedDisabled || (int)Find.TickManager.CurTimeSpeed < Settings.AutoHideSpeed.Value);
 
     private static float GetAltitude()
     {

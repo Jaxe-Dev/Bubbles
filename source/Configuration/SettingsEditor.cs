@@ -31,7 +31,7 @@ namespace Bubbles.Configuration
       if (doTextColors != Settings.DoTextColors.Value) { Bubbler.Rebuild(); }
       l.Gap();
 
-      l.SliderLabeled("Bubbles.AutoHideSpeed".Translate(), ref Settings.AutoHideSpeed.Value, 5, 1, display: Settings.AutoHideSpeed.Value == 5 ? "Bubbles.AutoHideSpeedOff".Translate().ToString() : Settings.AutoHideSpeed.Value.ToString());
+      l.SliderLabeled("Bubbles.AutoHideSpeed".Translate(), ref Settings.AutoHideSpeed.Value, 1, 4, display: Settings.AutoHideSpeed.Value == Settings.AutoHideSpeedDisabled ? "Bubbles.AutoHideSpeedOff".Translate().ToString() : Settings.AutoHideSpeed.Value.ToString());
 
       l.SliderLabeled("Bubbles.AltitudeBase".Translate(), ref Settings.AltitudeBase.Value, 3, 44);
       l.SliderLabeled("Bubbles.AltitudeMax".Translate(), ref Settings.AltitudeMax.Value, 20, 60);

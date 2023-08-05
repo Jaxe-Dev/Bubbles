@@ -22,7 +22,7 @@ namespace Bubbles.Core
 
       if (_cameraPlusLerpRootSize == null) { _cameraPlusLerpRootSize = MethodInvoker.GetHandler(AccessTools.Method("CameraPlus.Tools:LerpRootSize")); }
 
-      scale = (float) _cameraPlusLerpRootSize(null, scale);
+      scale = (float)_cameraPlusLerpRootSize(null, scale);
     }
   }
 }

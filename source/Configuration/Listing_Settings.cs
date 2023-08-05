@@ -41,9 +41,9 @@ namespace Bubbles.Configuration
 
     public void SliderLabeled(string label, ref int value, int min, int max, int roundTo = -1, string display = null)
     {
-      var floatValue = (float) value;
+      var floatValue = (float)value;
       SliderLabeled(label, ref floatValue, min, max, roundTo, display);
-      value = (int) floatValue;
+      value = (int)floatValue;
     }
 
     public void ColorEntry(string label, ref string buffer, ref Color original)
