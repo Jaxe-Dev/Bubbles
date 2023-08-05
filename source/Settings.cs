@@ -10,15 +10,15 @@ namespace Bubbles
 {
   public class Settings : ModSettings
   {
-    private static readonly string[] SameConfigVersions =
-    {
-      "2.4"
-    };
+    public const int AutoHideSpeedDisabled = 1;
+
+    private static readonly string[] SameConfigVersions = { };
+
     private static bool _resetRequired;
 
     public static bool Activated = true;
 
-    public static readonly Setting<int> AutoHideSpeed = new Setting<int>(nameof(AutoHideSpeed), 5);
+    public static readonly Setting<int> AutoHideSpeed = new Setting<int>(nameof(AutoHideSpeed), AutoHideSpeedDisabled);
 
     public static readonly Setting<bool> DoNonPlayer = new Setting<bool>(nameof(DoNonPlayer), true);
     public static readonly Setting<bool> DoAnimals = new Setting<bool>(nameof(DoAnimals), true);
