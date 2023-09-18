@@ -5,20 +5,20 @@ using Verse;
 
 namespace Bubbles
 {
-  public class Mod : Verse.Mod
+  public sealed class Mod : Verse.Mod
   {
     public const string Id = "Bubbles";
     public const string Name = "Interaction Bubbles";
-    public const string Version = "2.6";
+    public const string Version = "2.7";
 
-    public static Mod Instance;
+    public static Mod Instance = null!;
 
     public Mod(ModContentPack content) : base(content)
     {
       Instance = this;
 
       var settings = GetSettings<Settings>();
-      settings.CheckResetRequired();
+      settings!.CheckResetRequired();
 
       new Harmony(Id).PatchAll();
 

@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using UnityEngine;
 using Verse;
 
@@ -24,7 +24,7 @@ namespace Bubbles.Configuration
       viewRect.height = CurHeight;
     }
 
-    public void SliderLabeled(string label, ref float value, float min, float max, float roundTo = -1f, string display = null)
+    public void SliderLabeled(string label, ref float value, float min, float max, float roundTo = -1f, string? display = null)
     {
       var rect = GetRect(Text.LineHeight);
 
@@ -39,14 +39,14 @@ namespace Bubbles.Configuration
       if (roundTo > 0f) { value = Mathf.Round(value / roundTo) * roundTo; }
     }
 
-    public void SliderLabeled(string label, ref int value, int min, int max, int roundTo = -1, string display = null)
+    public void SliderLabeled(string label, ref int value, int min, int max, int roundTo = -1, string? display = null)
     {
       var floatValue = (float)value;
       SliderLabeled(label, ref floatValue, min, max, roundTo, display);
       value = (int)floatValue;
     }
 
-    public void ColorEntry(string label, ref string buffer, ref Color original)
+    public void ColorEntry(string label, ref string? buffer, ref Color original)
     {
       var rect = GetRect(Text.LineHeight);
       var rectLeft = rect.LeftHalf().Rounded();
@@ -58,12 +58,10 @@ namespace Bubbles.Configuration
       Widgets.DrawBoxSolid(rectPreview, original);
       Widgets.DrawBox(rectPreview);
 
-      if (buffer == null) { buffer = ColorUtility.ToHtmlStringRGB(original); }
-
-      buffer = (rect.height <= 30f ? Widgets.TextField(rectEntry, buffer) : Widgets.TextArea(rectEntry, buffer)).ToUpper();
+      buffer = Widgets.TextField(rectEntry, buffer ?? ColorUtility.ToHtmlStringRGB(original));
 
       var color = original;
-      var valid = buffer.Length == 6 && ColorUtility.TryParseHtmlString("#" + buffer, out color);
+      var valid = buffer!.Length is 6 && ColorUtility.TryParseHtmlString("#" + buffer, out color);
 
       if (!valid)
       {

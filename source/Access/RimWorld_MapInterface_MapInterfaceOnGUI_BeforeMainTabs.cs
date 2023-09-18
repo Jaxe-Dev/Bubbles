@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using Bubbles.Core;
 using HarmonyLib;
 using RimWorld;
 
-namespace Bubbles.Patch
+namespace Bubbles.Access
 {
   [HarmonyPatch(typeof(MapInterface), nameof(MapInterface.MapInterfaceOnGUI_BeforeMainTabs))]
   public static class RimWorld_MapInterface_MapInterfaceOnGUI_BeforeMainTabs
@@ -13,7 +13,7 @@ namespace Bubbles.Patch
       try { Bubbler.Draw(); }
       catch (Exception exception)
       {
-        Mod.Error($"Deactivated because draw failed with error: [{exception.Source}: {exception.Message}]\n\nStacktrace:\n{exception.StackTrace}");
+        Mod.Error($"Deactivated because draw failed with error: [{exception.Source}: {exception.Message}]\n\nTrace:\n{exception.StackTrace}");
         Settings.Activated = false;
       }
     }

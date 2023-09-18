@@ -1,8 +1,8 @@
-﻿using Bubbles.Core;
+using Bubbles.Core;
 using HarmonyLib;
 using Verse;
 
-namespace Bubbles.Patch
+namespace Bubbles.Access
 {
   [HarmonyPatch(typeof(PlayLog), nameof(PlayLog.Add))]
   public static class Verse_PlayLog_Add
