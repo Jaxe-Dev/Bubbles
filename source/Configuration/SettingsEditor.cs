@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Bubbles.Core;
 using UnityEngine;
 using Verse;
@@ -7,7 +7,7 @@ namespace Bubbles.Configuration
 {
   public static class SettingsEditor
   {
-    private static string[] _colorBuffer = new string[4];
+    private static string?[] _colorBuffer = new string[4];
 
     private static Vector2 _scrollPosition = Vector2.zero;
     private static Rect _viewRect;
@@ -70,11 +70,11 @@ namespace Bubbles.Configuration
       Settings.Reset();
     }
 
-    public static void ShowWindow() => Find.WindowStack.Add(new Dialog());
+    public static void ShowWindow() => Find.WindowStack!.Add(new Dialog());
 
-    private class Dialog : Window
+    private sealed class Dialog : Window
     {
-      public override Vector2 InitialSize => new Vector2(600f, 600f);
+      public override Vector2 InitialSize => new(600f, 600f);
 
       public Dialog()
       {
@@ -89,7 +89,7 @@ namespace Bubbles.Configuration
       public override void DoWindowContents(Rect rect)
       {
         rect.yMax -= 60f;
-        DrawSettings(rect.ContractedBy(8f, 0f));
+        DrawSettings(rect);
       }
 
       public override void PostClose()
