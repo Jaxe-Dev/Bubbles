@@ -65,11 +65,7 @@ namespace Bubbles.Core
       foreach (var bubble in Dictionary[pawn].OrderByDescending(static bubble => bubble.Entry.Tick).ToArray())
       {
         if (count > Settings.PawnMax.Value) { return; }
-        if (!bubble.Draw(pos + GetOffset(offset), isSelected, scale))
-        {
-          Remove(pawn, bubble);
-          if (Dictionary[pawn].NullOrEmpty()) { Dictionary.Remove(pawn); }
-        }
+        if (!bubble.Draw(pos + GetOffset(offset), isSelected, scale)) { Remove(pawn, bubble); }
         offset += (Settings.OffsetDirection.Value.IsHorizontal ? bubble.Width : bubble.Height) + Settings.OffsetSpacing.Value;
         count++;
       }
