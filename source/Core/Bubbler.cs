@@ -55,7 +55,7 @@ namespace Bubbles.Core
 
     private static void DrawBubble(Pawn pawn, bool isSelected, float scale)
     {
-      if (!pawn.Spawned || pawn.Map != Find.CurrentMap || pawn.Map!.fogGrid!.IsFogged(pawn.Position)) { return; }
+      if (WorldRendererUtility.WorldRenderedNow || !pawn.Spawned || pawn.Map != Find.CurrentMap || pawn.Map!.fogGrid!.IsFogged(pawn.Position)) { return; }
 
       var pos = GenMapUI.LabelDrawPosFor(pawn, LabelPositionOffset);
 

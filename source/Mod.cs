@@ -9,7 +9,7 @@ namespace Bubbles
   {
     public const string Id = "Bubbles";
     public const string Name = "Interaction Bubbles";
-    public const string Version = "2.8";
+    public const string Version = "2.9";
 
     public static Mod Instance = null!;
 
@@ -17,8 +17,7 @@ namespace Bubbles
     {
       Instance = this;
 
-      var settings = GetSettings<Settings>();
-      settings!.CheckResetRequired();
+      GetSettings<Settings>()!.CheckResetRequired();
 
       new Harmony(Id).PatchAll();
 
