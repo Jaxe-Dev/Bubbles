@@ -9,7 +9,7 @@ namespace Bubbles
   {
     public const string Id = "Bubbles";
     public const string Name = "Interaction Bubbles";
-    public const string Version = "2.9";
+    public const string Version = "3.0";
 
     public static Mod Instance = null!;
 
