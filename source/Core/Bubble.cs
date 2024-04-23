@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using LudeonTK;
 using UnityEngine;
 using Verse;
 
@@ -37,10 +38,10 @@ namespace Bubbles.Core
 
     private static void DrawAtlas(Rect rect, Texture2D atlas)
     {
-      rect.xMin = Widgets.AdjustCoordToUIScalingFloor(rect.xMin);
-      rect.yMin = Widgets.AdjustCoordToUIScalingFloor(rect.yMin);
-      rect.xMax = Widgets.AdjustCoordToUIScalingCeil(rect.xMax);
-      rect.yMax = Widgets.AdjustCoordToUIScalingCeil(rect.yMax);
+      rect.xMin = UIScaling.AdjustCoordToUIScalingFloor(rect.xMin);
+      rect.yMin = UIScaling.AdjustCoordToUIScalingFloor(rect.yMin);
+      rect.xMax = UIScaling.AdjustCoordToUIScalingCeil(rect.xMax);
+      rect.yMax = UIScaling.AdjustCoordToUIScalingCeil(rect.yMax);
 
       var scale = Mathf.RoundToInt(Mathf.Min(atlas.width * 0.25f, rect.height * 0.25f, rect.width * 0.25f));
 
