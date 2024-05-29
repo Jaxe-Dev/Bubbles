@@ -18,10 +18,23 @@ namespace Bubbles.Core
 
     public static void Add(LogEntry entry)
     {
-      if (!ShouldShow() || entry is not PlayLogEntry_Interaction interaction) { return; }
+      if (!ShouldShow()) { return; }
 
-      var initiator = (Pawn?)Reflection.Verse_PlayLogEntry_Interaction_Initiator.GetValue(interaction);
-      var recipient = (Pawn?)Reflection.Verse_PlayLogEntry_Interaction_Recipient.GetValue(interaction);
+      Pawn? initiator, recipient;
+
+      switch (entry)
+      {
+        case PlayLogEntry_Interaction interaction:
+          initiator = (Pawn?)Reflection.Verse_PlayLogEntry_Interaction_Initiator.GetValue(interaction);
+          recipient = (Pawn?)Reflection.Verse_PlayLogEntry_Interaction_Recipient.GetValue(interaction);
+          break;
+        case PlayLogEntry_InteractionSinglePawn interaction:
+          initiator = (Pawn?)Reflection.Verse_PlayLogEntry_InteractionSinglePawn_Initiator.GetValue(interaction);
+          recipient = null;
+          break;
+        default:
+          return;
+      }
 
       if (initiator is null || initiator.Map != Find.CurrentMap) { return; }
 
@@ -31,7 +44,7 @@ namespace Bubbles.Core
 
       if (!Dictionary.ContainsKey(initiator)) { Dictionary[initiator] = new List<Bubble>(); }
 
-      Dictionary[initiator]!.Add(new Bubble(initiator, interaction));
+      Dictionary[initiator]!.Add(new Bubble(initiator, entry));
     }
 
     private static void Remove(Pawn pawn, Bubble bubble)

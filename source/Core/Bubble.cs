@@ -10,7 +10,7 @@ namespace Bubbles.Core
     private static readonly Regex RemoveColorTag = new("<\\/?color[^>]*>");
     private static readonly GUIContent Content = new();
 
-    public PlayLogEntry_Interaction Entry { get; }
+    public LogEntry Entry { get; }
 
     private readonly Pawn _pawn;
 
@@ -27,7 +27,7 @@ namespace Bubbles.Core
     public int Height { get; private set; }
     public int Width { get; private set; }
 
-    public Bubble(Pawn pawn, PlayLogEntry_Interaction entry)
+    public Bubble(Pawn pawn, LogEntry entry)
     {
       Entry = entry;
       _pawn = pawn;
