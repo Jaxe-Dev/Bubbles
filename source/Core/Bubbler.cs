@@ -14,7 +14,7 @@ namespace Bubbles.Core
 
     private static readonly Dictionary<Pawn, List<Bubble>> Dictionary = new();
 
-    private static bool ShouldShow() => Settings.Activated && !WorldRendererUtility.WorldRenderedNow && (Settings.AutoHideSpeed.Value is Settings.AutoHideSpeedDisabled || (int)Find.TickManager!.CurTimeSpeed < Settings.AutoHideSpeed.Value);
+    private static bool ShouldShow() => Settings.Activated && !WorldRendererUtility.WorldRendered && (Settings.AutoHideSpeed.Value is Settings.AutoHideSpeedDisabled || (int)Find.TickManager!.CurTimeSpeed < Settings.AutoHideSpeed.Value);
 
     public static void Add(LogEntry entry)
     {
@@ -68,7 +68,7 @@ namespace Bubbles.Core
 
     private static void DrawBubble(Pawn pawn, bool isSelected, float scale)
     {
-      if (WorldRendererUtility.WorldRenderedNow || !pawn.Spawned || pawn.Map != Find.CurrentMap || pawn.Map!.fogGrid!.IsFogged(pawn.Position)) { return; }
+      if (WorldRendererUtility.WorldRendered || !pawn.Spawned || pawn.Map != Find.CurrentMap || pawn.Map!.fogGrid!.IsFogged(pawn.Position)) { return; }
 
       var pos = GenMapUI.LabelDrawPosFor(pawn, LabelPositionOffset);
 
