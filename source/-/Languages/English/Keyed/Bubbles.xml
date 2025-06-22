@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <Bubbles.Toggle>Show Bubbles</Bubbles.Toggle>
   <Bubbles.ResetToDefault>Reset to default</Bubbles.ResetToDefault>
@@ -6,7 +6,9 @@
   <Bubbles.DoNonPlayer>Show for other factions</Bubbles.DoNonPlayer>
   <Bubbles.DoAnimals>Show animal interactions</Bubbles.DoAnimals>
   <Bubbles.DoDrafted>Show when drafted</Bubbles.DoDrafted>
-  <Bubbles.DoTextColors>Show text colors</Bubbles.DoTextColors>
+  <Bubbles.DoTextColors>Show colored text</Bubbles.DoTextColors>
+  <Bubbles.HearingCheck>Must be heard by player-controlled</Bubbles.HearingCheck>
+  <Bubbles.HearingRange>Hearing range</Bubbles.HearingRange>
   <Bubbles.AutoHideSpeed>Auto hide at speed</Bubbles.AutoHideSpeed>
   <Bubbles.AutoHideSpeedOff>Off</Bubbles.AutoHideSpeedOff>
   <Bubbles.AltitudeBase>Base altitude</Bubbles.AltitudeBase>

@@ -2,54 +2,45 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <ProjectGuid>{61B57A41-B985-4C1C-9BED-D25689996E89}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{61B57A41-B985-4C1C-9BED-D25689996E89}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bubbles</RootNamespace>
-    <AssemblyName>Bubbles</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
+    <AssemblyName>Bubbles</AssemblyName>
+    <RootNamespace>Bubbles</RootNamespace>
     <BaseIntermediateOutputPath>..\build\.obj\$(ProjectName)\$(AssemblyName)</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
     <OutputPath>..\build\$(AssemblyName)\Assemblies</OutputPath>
+    <Optimize>true</Optimize>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.3.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Harmony.2.3.3\lib\net472\0Harmony.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Assembly-CSharp, Version=1.5.8874.2866, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>Assembly-CSharp.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
-    <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>UnityEngine.CoreModule.dll</HintPath>
+    <Reference Include="mscorlib" />
+    <Reference Include="UnityEngine.CoreModule">
       <Private>False</Private>
     </Reference>
-    <Reference Include="UnityEngine.IMGUIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>UnityEngine.IMGUIModule.dll</HintPath>
+    <Reference Include="UnityEngine.IMGUIModule">
       <Private>False</Private>
     </Reference>
-    <Reference Include="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="0Harmony, Version=2.3.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lib.Harmony.2.3.6\lib\net472\0Harmony.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp, Version=1.6.9296.31911, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>Assembly-CSharp.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -79,9 +70,10 @@
   <ItemGroup>
     <Content Include="-\README.md" />
     <Content Include="-\About\About.xml" />
+    <Content Include="-\About\ModIcon.png" />
     <Content Include="-\About\Preview.png" />
     <Content Include="-\About\PublishedFileId.txt" />
-    <Content Include="-\Languages\English\Keyed\Keys.xml" />
+    <Content Include="-\Languages\English\Keyed\Bubbles.xml" />
     <Content Include="-\Textures\Bubbles\Icon.png" />
     <Content Include="-\Textures\Bubbles\Inner.png" />
     <Content Include="-\Textures\Bubbles\Outer.png" />
