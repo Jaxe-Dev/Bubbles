@@ -15,15 +15,13 @@ public static class Bubbler
 
   private static readonly Dictionary<Pawn, List<Bubble>> Dictionary = new();
 
-  private static bool IsWorldRendered() => WorldRendererUtility.CurrentWorldRenderMode is not WorldRenderMode.None;
-
-  private static bool ShouldShow() => Settings.Activated && !IsWorldRendered() && (Settings.AutoHideSpeed.Value is Settings.AutoHideSpeedDisabled || (int)Find.TickManager!.CurTimeSpeed < Settings.AutoHideSpeed.Value);
+  private static bool CanRender() => Settings.Activated && WorldRendererUtility.CurrentWorldRenderMode is WorldRenderMode.None or WorldRenderMode.Background && (Settings.AutoHideSpeed.Value is Settings.AutoHideSpeedDisabled || (int)Find.TickManager!.CurTimeSpeed < Settings.AutoHideSpeed.Value);
 
   private static bool CanBeHeard(Pawn pawn) => !Settings.HearingCheck.Value || (pawn.Map is not null && (from colonist in pawn.Map.mapPawns?.FreeColonistsSpawned let hearing = colonist.health.capacities.GetLevel(PawnCapacityDefOf.Hearing) where !(hearing <= 0f) where colonist.Position.InHorDistOf(pawn.Position, Settings.HearingRange.Value * hearing) select colonist).Any());
 
   public static void Add(LogEntry entry)
   {
-    if (!ShouldShow()) { return; }
+    if (!CanRender()) { return; }
 
     Pawn? initiator, recipient;
 
@@ -75,7 +73,7 @@ public static class Bubbler
 
   private static void DrawBubble(Pawn pawn, bool isSelected, float scale)
   {
-    if (IsWorldRendered() || !pawn.Spawned || pawn.Map != Find.CurrentMap || pawn.Map!.fogGrid!.IsFogged(pawn.Position)) { return; }
+    if (!CanRender() || !pawn.Spawned || pawn.Map != Find.CurrentMap || pawn.Map!.fogGrid!.IsFogged(pawn.Position)) { return; }
 
     var pos = GenMapUI.LabelDrawPosFor(pawn, LabelPositionOffset);
 

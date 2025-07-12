@@ -9,7 +9,7 @@ public sealed class Mod : Verse.Mod
 {
   public const string Id = "Bubbles";
   public const string Name = "Interaction Bubbles";
-  public const string Version = "4.0";
+  public const string Version = "4.1";
 
   public static Mod Instance = null!;
 

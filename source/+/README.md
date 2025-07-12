@@ -1,6 +1,6 @@
 # Interaction Bubbles
 
-![Mod Version](https://img.shields.io/badge/Mod_Version-{ReleaseVersion}-blue)
+![Mod Version](https://img.shields.io/badge/Mod_Version-{ModVersion}-blue)
 ![RimWorld Version](https://img.shields.io/badge/Built_for_RimWorld-{GameVersion}-blue)
 ![Harmony Version](https://img.shields.io/badge/Powered_by_Harmony-{HarmonyVersion}-blue)\
 [![Steam Subscribers](https://img.shields.io/steam/downloads/1516158345?color=blue&label=Steam%20Downloads&logo=Steam)](https://steamcommunity.com/sharedfiles/filedetails/?id=1516158345)
